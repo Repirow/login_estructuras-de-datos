@@ -204,6 +204,40 @@ def borrar_usuario():
 
 
 ##############################################################
+#------------------ Submenu Algoritmos ----------------------#
+
+
+def algoritmos():
+    while True:
+        print("\nMenu:")
+        print("1. Algoritmo Burbuja")
+        print("2. Algoritmo Burbuja mejorado")
+        print("3. Algoritmo Insert")
+        print("4. Algoritmo QuickSort")
+        print("5. Regresar al menu de login")
+
+        opcion = input("Selecciona una opción: ")
+
+        if opcion == "1":
+            #funcion algoritmo burbuja
+            input()
+        elif opcion == "2":
+            #funcion algoritmo burbuja mejorado
+            input()
+        elif opcion == "3":
+            #funcion algoritmo insert
+            input()
+        elif opcion == "4":
+            #funcion algoritmo quicksort
+            input()
+        elif opcion == "5":
+            break
+        else:
+            print("Opción no válida. Inténtalo de nuevo.")
+
+
+
+##############################################################
 #------------------- Submenu Logueado -----------------------#
 
 def logged():
@@ -216,13 +250,11 @@ def logged():
         opcion = input("Selecciona una opción: ")
         
         if opcion == "1":
-            #funcion de algoritmos
-            input()
+            algoritmos()
         elif opcion == "2":
             #funcion de editar usuario
             input() 
         elif opcion == "3":
-            print("¡Hasta luego!")
             break
         else:
             print("Opción no válida. Inténtalo de nuevo.")
