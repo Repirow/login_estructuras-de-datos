@@ -209,23 +209,19 @@ def borrar_usuario():
 def logged():
     while True:
         print("\nMenu:")
-        print("1. Iniciar sesión")
-        print("2. Crear cuenta")
-        print("3. Visualizar usuarios")
-        print("4. Borrar usuario")
-        print("5. Salir")
+        print("1. Probar Algoritmos de Ordenamiento")
+        print("2. Editar Usuario")
+        print("3. Cerrar Sesion")
         
         opcion = input("Selecciona una opción: ")
         
         if opcion == "1":
-            login()
+            #funcion de algoritmos
+            input()
         elif opcion == "2":
-            crear_cuenta()
+            #funcion de editar usuario
+            input() 
         elif opcion == "3":
-            imprimir_usuarios()
-        elif opcion == "4":
-            borrar_usuario()
-        elif opcion == "5":
             print("¡Hasta luego!")
             break
         else:
