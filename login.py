@@ -116,6 +116,7 @@ def login():
         if dar_formato(usuario) == cuenta and usuarios[1][index] == dar_formato(password) : #if usuario == cuenta and usuarios[1][index] == password :
             print("\nInicio de sesión exitoso. ¡Bienvenido,", usuario, "!")
             input("Presione Enter para continuar")
+            logged()
             return
 
         index +=1
