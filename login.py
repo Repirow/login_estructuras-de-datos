@@ -223,6 +223,31 @@ def borrar_usuario():
 #------------------ Submenu Algoritmos ----------------------#
 
 
+def burbuja():
+    arreglo = separar_numeros(input("Digite una serie de numeros desordenados \nseparados por comas: \n-->"))
+
+    iteraciones = 0
+    consultas = 0
+    cambios = 0
+
+    for iteracion in range(len(arreglo)):
+        iteraciones += 1
+        for indice in range(len(arreglo) - 1):
+            indice_siguiente = indice + 1
+
+            consultas += 1
+            if arreglo[indice] > arreglo[indice_siguiente]:
+                cambios += 1
+                temporal = arreglo[indice_siguiente]
+                arreglo[indice_siguiente] = arreglo[indice]
+                arreglo[indice] = temporal
+
+    print(f'Arreglo ordenado: {arreglo}')
+    print(f'Iteraciones: {iteraciones}')
+    print(f'Consultas: {consultas}')
+    print(f'Cambios: {cambios}')
+
+
 def algoritmos():
     while True:
         print("\nMenu:")
@@ -235,8 +260,8 @@ def algoritmos():
         opcion = input("Selecciona una opción: ")
 
         if opcion == "1":
-            #funcion algoritmo burbuja
-            input()
+            print("Alogoritmo Burbuja:\n")
+            burbuja()
         elif opcion == "2":
             #funcion algoritmo burbuja mejorado
             input()
