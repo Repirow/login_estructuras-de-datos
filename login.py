@@ -98,6 +98,21 @@ def eliminar_entrada(array):
 
 
 
+def separar_numeros(cadena):
+    cadena += ","
+    arreglo_final = []
+    numero = ""
+    for letra in cadena:
+        if letra != "," and letra != " ":
+            numero += letra
+        elif letra == "," and numero != "":
+            arreglo_final.append(int(numero))
+            numero = ""
+
+    return arreglo_final
+
+
+
 #######################################################
 #---------------- Submenu Principal ------------------#
 
