@@ -279,12 +279,51 @@ def burbuja_mejorado():
 
 
 
+def insertion():
+    
+    arreglo = separar_numeros(input("Digite una serie de numeros desordenados \nseparados por comas: \n-->"))
+
+
+    iteraciones = 0
+    consultas = 0
+    cambios = 0
+
+    iteraciones += 1
+    for posicion_actual in (range(1, len(arreglo))):
+
+        puntero = posicion_actual
+        temporal = arreglo[posicion_actual]
+        i = 1
+        mayor = True
+
+        while mayor == True and posicion_actual - i >= 0:
+
+            consultas += 1
+            if arreglo[posicion_actual - i] > temporal:
+
+                cambios += 1
+                arreglo[puntero] = arreglo[puntero - 1]
+                i += 1
+                puntero -= 1
+
+            else:
+                mayor = False
+
+        arreglo[puntero] = temporal
+
+    print(f'Arreglo ordenado: {arreglo}')
+    print(f'Iteraciones: {iteraciones}')
+    print(f'Consultas: {consultas}')
+    print(f'Cambios: {cambios}')
+
+
+
 def algoritmos():
     while True:
         print("\nMenu:")
         print("1. Algoritmo Burbuja")
         print("2. Algoritmo Burbuja mejorado")
-        print("3. Algoritmo Insert")
+        print("3. Algoritmo Insertion")
         print("4. Algoritmo QuickSort")
         print("5. Regresar al menu de login")
 
@@ -297,8 +336,8 @@ def algoritmos():
             print("Alogoritmo Burbuja Mejorado:\n")
             burbuja_mejorado()
         elif opcion == "3":
-            #funcion algoritmo insert
-            input()
+            print("Alogoritmo Insertion:\n")
+            insertion()
         elif opcion == "4":
             #funcion algoritmo quicksort
             input()
