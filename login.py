@@ -318,6 +318,41 @@ def insertion():
 
 
 
+def quicksort_ejecucion():
+    
+    iteraciones = 0
+    comparaciones = 0
+    intercambios = 0
+    valores = 0
+
+    def quicksort_nucleo(arreglo):
+        nonlocal iteraciones, comparaciones, intercambios, valores
+
+        comparaciones += 1
+        
+        if len(arreglo) <= 1:
+            return arreglo
+        else:
+            pivote = arreglo[-1]
+            intercambios += 1
+            menores = [x for x in arreglo[:-1] if x < pivote]
+            mayores = [x for x in arreglo[:-1] if x >= pivote]
+            valores += 2 * (len(arreglo) - 1)
+            return quicksort_nucleo(menores) + [pivote] + quicksort_nucleo(mayores)
+        
+
+    arreglo = separar_numeros(input("Digite una serie de numeros desordenados \nseparados por comas: \n-->"))
+    
+    arreglo_ordenado = quicksort_nucleo(arreglo)
+    iteraciones = valores / len(arreglo)
+
+    print(f'Arreglo ordenado: {arreglo_ordenado}')
+    print(f'Iteraciones: {iteraciones}')
+    print(f'Consultas: {comparaciones}')
+    print(f'Cambios: {intercambios}')
+
+
+
 def algoritmos():
     while True:
         print("\nMenu:")
@@ -339,8 +374,8 @@ def algoritmos():
             print("Alogoritmo Insertion:\n")
             insertion()
         elif opcion == "4":
-            #funcion algoritmo quicksort
-            input()
+            print("Alogoritmo QuickSort:\n")
+            quicksort_ejecucion()
         elif opcion == "5":
             break
         else:
