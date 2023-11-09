@@ -24,6 +24,7 @@ usuarios = [[[], [], [], [], [], [], [], [], []], [[], [], [], [], [], [], [], [
 #             [" ", " ", " ", " ", " ", " ", " ", " "]]]     #matriz para guardar a los usuarios y passwords
 preguntas = ["Cual es nombre de tu ciudad de nacimiento?", "Cual es tu numero favorito?"]
 claves_seguridad = {}
+dicc_usuarios = {}
 
 #######################################################
 #----------------- Funcionalidades -------------------#
@@ -146,6 +147,20 @@ def leer_json(nombre_archivo):
 
 
 
+def json_a_matriz():
+    global cuentas
+    contador = 0
+
+    for user,password in dicc_usuarios.items():
+        usuarios[0][contador] = dar_formato(user)
+        usuarios[1][contador] = dar_formato(password)
+
+        contador += 1
+
+    cuentas = contador
+
+
+
 #######################################################
 #---------------- Submenu Principal ------------------#
 
@@ -198,7 +213,9 @@ def crear_cuenta():
     else:
         usuarios[0][cuentas] = dar_formato(usuario)
         usuarios[1][cuentas] = dar_formato(password)
-        
+
+        dicc_usuarios[usuario] = password
+        escribir_json(dicc_usuarios, 'usuarios.json')
 
         salir = False
         while not salir:
@@ -498,4 +515,11 @@ def main():
 
 if __name__ == "__main__":
     llenar_arrays()
+    try:
+        claves_seguridad = leer_json('claves.json')
+        dicc_usuarios = leer_json('usuarios.json')
+    except FileNotFoundError:
+        print("Sin datos que cargar\n\n\n\n")
+    
+    json_a_matriz()
     main()
