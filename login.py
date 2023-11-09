@@ -1,5 +1,7 @@
-#--------------- Variables Globales ------------------#
+import json
 
+#--------------- Variables Globales ------------------#
+intentos = 0
 cuentas = 0     #contador de cuentas creadas
 usuarios = [[[], [], [], [], [], [], [], [], []], [[], [], [], [], [], [], [], [], []]]     #matriz para guardar a los usuarios y passwords
 #usuarios = [[[" ", " ", " ", " ", " ", " ", " ", " "], 
@@ -20,8 +22,8 @@ usuarios = [[[], [], [], [], [], [], [], [], []], [[], [], [], [], [], [], [], [
 #             [" ", " ", " ", " ", " ", " ", " ", " "], 
 #             [" ", " ", " ", " ", " ", " ", " ", " "], 
 #             [" ", " ", " ", " ", " ", " ", " ", " "]]]     #matriz para guardar a los usuarios y passwords
-
-preguntas = {}
+preguntas = ["Cual es nombre de tu ciudad de nacimiento?", "Cual es tu numero favorito?"]
+claves_seguridad = {}
 
 #######################################################
 #----------------- Funcionalidades -------------------#
@@ -131,6 +133,19 @@ def separar_numeros(cadena):
 
 
 
+def escribir_json(diccionario, nombre_archivo):
+    with open(nombre_archivo, 'w') as archivo:
+        json.dump(diccionario, archivo)
+
+
+
+def leer_json(nombre_archivo):
+    with open(nombre_archivo, 'r') as archivo:
+        datos_json = json.load(archivo)
+    return datos_json
+
+
+
 #######################################################
 #---------------- Submenu Principal ------------------#
 
@@ -146,7 +161,7 @@ def login():
 
     index = 0
     for cuenta in usuarios[0]:
-        if dar_formato(usuario) == cuenta and usuarios[1][index] == dar_formato(password) : #if usuario == cuenta and usuarios[1][index] == password :
+        if dar_formato(usuario) == cuenta and usuarios[1][index] == dar_formato(password):
             print("\nInicio de sesión exitoso. ¡Bienvenido,", usuario, "!")
             input("Presione Enter para continuar")
             logged()
@@ -183,6 +198,31 @@ def crear_cuenta():
     else:
         usuarios[0][cuentas] = dar_formato(usuario)
         usuarios[1][cuentas] = dar_formato(password)
+        
+
+        salir = False
+        while not salir:
+            print(preguntas[0])
+            ciudad = input("--> ").strip()
+
+            print(preguntas[1])
+            numero = input("--> ").strip()
+
+            print("Los datos son correctos?")
+            print("Ciudad: ", ciudad)
+            print("Numero: ", numero)
+            print("\n\n1.-Si\n2.-No")
+            op = input("-->  ")
+            if op == "1" :
+                claves_seguridad[cuentas] = {}
+                claves_seguridad[cuentas]["ciudad"] = ciudad
+                claves_seguridad[cuentas]["numero"] = numero
+
+                escribir_json(claves_seguridad, "claves.json")
+                salir = True
+            else:
+                print("Por favor, vuelva a escribir sus datos")
+
         cuentas += 1
         print("\nCuenta creada exitosamente.")
 
