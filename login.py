@@ -1,3 +1,4 @@
+#Autor y propietario: Salvador Garcia
 import json
 
 #--------------- Variables Globales ------------------#
